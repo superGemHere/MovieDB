@@ -1,0 +1,238 @@
+.main {
+   width: 100%;
+ }
+ 
+ .hero {
+   position: relative;
+   height: 250px;
+   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/placeholder.svg?height=250&width=1200")
+     center / cover no-repeat;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   margin-bottom: 3rem;
+ }
+ 
+ .heroContent {
+   max-width: 800px;
+   padding: 0 1rem;
+ }
+ 
+ .title {
+   font-size: 3rem;
+   font-weight: 700;
+   margin-bottom: 1rem;
+   color: white;
+ }
+ 
+ .subtitle {
+   font-size: 1.2rem;
+   color: #ccc;
+ }
+ 
+ .contactSection {
+   padding: 3rem 0;
+ }
+ 
+ .container {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 0 1rem;
+ }
+ 
+ .contactGrid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 3rem;
+ }
+ 
+ .contactInfo {
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+ }
+ 
+ .contactInfo h2 {
+   font-size: 1.8rem;
+   margin-bottom: 1rem;
+ }
+ 
+ .contactInfo > p {
+   color: #ccc;
+   line-height: 1.6;
+ }
+ 
+ .contactDetails {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+ }
+ 
+ .contactItem {
+   display: flex;
+   gap: 1rem;
+ }
+ 
+ .contactIcon {
+   width: 40px;
+   height: 40px;
+   background-color: rgba(245, 197, 24, 0.1);
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: var(--primary);
+ }
+ 
+ .contactItem h3 {
+   font-size: 1.1rem;
+   margin-bottom: 0.5rem;
+ }
+ 
+ .contactItem p {
+   color: #ccc;
+ }
+ 
+ .officeHours {
+   border-top: 1px solid rgba(255, 255, 255, 0.1);
+   padding-top: 1.5rem;
+ }
+ 
+ .officeHours h3 {
+   font-size: 1.1rem;
+   margin-bottom: 1rem;
+ }
+ 
+ .officeHours p {
+   color: #ccc;
+   margin-bottom: 0.5rem;
+ }
+ 
+ .contactForm {
+   background-color: var(--card-bg);
+   border-radius: 12px;
+   padding: 2rem;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .contactForm h2 {
+   font-size: 1.8rem;
+   margin-bottom: 1.5rem;
+ }
+ 
+ .formGroup {
+   margin-bottom: 1.5rem;
+ }
+ 
+ .formGroup label {
+   display: block;
+   margin-bottom: 0.5rem;
+   font-weight: 500;
+ }
+ 
+ .formGroup input,
+ .formGroup select,
+ .formGroup textarea {
+   width: 100%;
+   padding: 12px;
+   background-color: rgba(255, 255, 255, 0.05);
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   border-radius: 6px;
+   color: white;
+   font-size: 1rem;
+   transition: border-color 0.2s;
+ }
+ 
+ .formGroup input:focus,
+ .formGroup select:focus,
+ .formGroup textarea:focus {
+   outline: none;
+   border-color: var(--primary);
+ }
+ 
+ .formGroup input::placeholder,
+ .formGroup textarea::placeholder {
+   color: #777;
+ }
+ 
+ .submitButton {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.5rem;
+   width: 100%;
+   padding: 12px;
+   background-color: var(--primary);
+   color: black;
+   font-weight: 600;
+   border: none;
+   border-radius: 6px;
+   font-size: 1rem;
+   cursor: pointer;
+   transition: background-color 0.2s;
+ }
+ 
+ .submitButton:hover {
+   background-color: #e0b316;
+ }
+ 
+ .submitButton:disabled {
+   opacity: 0.7;
+   cursor: not-allowed;
+ }
+ 
+ .successMessage {
+   padding: 1rem;
+   background-color: rgba(34, 197, 94, 0.1);
+   border: 1px solid rgba(34, 197, 94, 0.3);
+   border-radius: 6px;
+   color: #22c55e;
+   margin-bottom: 1.5rem;
+ }
+ 
+ .mapSection {
+   padding: 3rem 0;
+   background-color: var(--card-bg);
+ }
+ 
+ .mapTitle {
+   font-size: 1.8rem;
+   text-align: center;
+   margin-bottom: 2rem;
+ }
+ 
+ .map {
+   width: 100%;
+   height: 400px;
+   border-radius: 12px;
+   overflow: hidden;
+ }
+ 
+ .mapPlaceholder {
+   width: 100%;
+   height: 100%;
+   background-color: rgba(255, 255, 255, 0.05);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   color: #999;
+ }
+ 
+ @media (max-width: 768px) {
+   .contactGrid {
+     grid-template-columns: 1fr;
+     gap: 2rem;
+   }
+ 
+   .title {
+     font-size: 2rem;
+   }
+ 
+   .map {
+     height: 300px;
+   }
+ }
+ 
+ 
