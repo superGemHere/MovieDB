@@ -9,8 +9,17 @@ interface CategoryPageProps {
   }
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = params
+export function generateStaticParams() {
+  return [
+    { slug: "trending" },
+    { slug: "top-rated" },
+    { slug: "coming-soon" },
+  ];
+}
+
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params;
+  console.log(slug);
 
   // Get category title and icon
   let categoryTitle = ""
