@@ -1,0 +1,92 @@
+.sliderContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sliderTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sliderControls {
+  display: flex;
+  gap: 8px;
+}
+
+.sliderButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sliderButton:hover {
+  background-color: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.sliderButton:disabled {
+  opacity: 0.5;
+}
+
+.sliderWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider {
+  display: grid;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.sliderItem {
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .sliderContainer {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 900px) {
+  .sliderContainer {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sliderContainer {
+    padding: 16px;
+  }
+
+  .sliderTitle {
+    font-size: 20px;
+  }
+
+  .sliderButton {
+    width: 32px;
+    height: 32px;
+  }
+}
+
