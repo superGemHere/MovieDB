@@ -2,7 +2,7 @@ import { TrendingUp, Star, Clock } from "lucide-react";
 import MovieCard from "@/components/movie-card";
 import styles from "./page.module.css";
 import type { Movie } from "@/types/movie";
-import movieAPI from "@/app/lib/api/movies";
+import movieAPI from "@/lib/api/movies";
 import PaginationControls from "./PaginationControls";
 
 interface CategoryPageProps {

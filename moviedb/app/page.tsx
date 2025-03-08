@@ -4,7 +4,7 @@ import MovieCard from "@/components/movie-card"
 import SearchBar from "@/components/search-bar"
 import styles from "./page.module.css"
 import { movies } from "@/data/movies"
-import movieAPI from "./lib/api/movies"
+import movieAPI from "../lib/api/movies"
 import MovieSlider from "@/components/movie-slider"
 
 export default async function Home() {
