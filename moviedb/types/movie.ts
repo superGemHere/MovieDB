@@ -1,12 +1,12 @@
 export interface Movie {
    id: string
    title: string
-   year: number
-   rating: number
+   release_date: number
+   vote_average: string
    runtime: number
    genres: string[]
    overview: string
-   posterUrl: string
+   poster_path: string
    backdropUrl: string
    cast: string[]
  }
