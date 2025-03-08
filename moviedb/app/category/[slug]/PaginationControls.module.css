@@ -1,0 +1,23 @@
+.paginationContainer{
+   display: flex;
+   gap: 1rem;
+   align-items: center;
+  }
+  
+  .pageButtonWrapper{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: var(--primary);
+   color: var(--background);
+   border-radius: 50%;
+   padding: .3rem;
+   cursor: pointer;
+   border: none;
+   outline: none;
+  }
+  
+  .pageNumber{
+   font-size: 1.2rem;
+   font-weight: bold;
+  }
