@@ -6,12 +6,12 @@ import movieAPI from "@/lib/api/movies";
 import PaginationControls from "./PaginationControls";
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     page: string;
-  };
+  }>;
 }
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {

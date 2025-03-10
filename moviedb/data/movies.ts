@@ -1,6 +1,6 @@
 import type { Movie } from "@/types/movie"
 
-export const movies: Movie[] = [
+export const movies = [
   {
     id: "inception",
     title: "Inception",

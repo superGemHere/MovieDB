@@ -8,7 +8,8 @@ export interface Movie {
    overview: string
    poster_path: string
    backdropUrl: string
-   cast: string[]
+   cast: string[],
+   original_language: string
  }
  
  

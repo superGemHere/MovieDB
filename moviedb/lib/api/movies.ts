@@ -9,11 +9,12 @@ const requester = axios.create({
 });
 
 // Get Movies
-const getMovies = async () => {
+const getMovies = async (page?: number) => {
   try {
     const response = await requester.get("/discover/movie", {
       params: {
         api_key: apiKey,
+        page,
       },
     });
     return response.data;
@@ -86,6 +87,19 @@ const getTopRatedMovies = async (page?: number) => {
   }
 };
 
+const getSimilarMovies = async (id: number) => {
+  try {
+    const response = await requester.get(`/movie/${id}/similar`, {
+      params: {
+        api_key: apiKey,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching similar movies:", error);
+    return [];
+  }
+};
 
 const movieAPI = {
   getMovies,
@@ -93,6 +107,7 @@ const movieAPI = {
   getTrendingMovies,
   getComingSoonMovies,
   getTopRatedMovies,
+  getSimilarMovies,
 };
 
 export default movieAPI;
