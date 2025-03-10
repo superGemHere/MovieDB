@@ -132,16 +132,18 @@ import type { Movie } from "@/types/movie"
 type MovieSliderProps = {
    sectionTitle?: string
    movies: Movie[]
+   slice?: number
 }
 
 export default function MovieSlider({
    sectionTitle,
    movies,
+   slice = 10,
 }: MovieSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [itemsPerSlide, setItemsPerSlide] = useState(5)
   const sliderRef = useRef<HTMLDivElement>(null);
-  const slicedMovies = movies.slice(0, 10)
+  const slicedMovies = movies.slice(0, slice)
 
   // Update items per slide based on screen width
   useEffect(() => {
