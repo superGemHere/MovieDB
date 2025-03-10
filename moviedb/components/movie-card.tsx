@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Star, Clock } from "lucide-react"
+import { Star, Clock, Languages } from "lucide-react"
 import styles from "./movie-card.module.css"
 import type { Movie } from "@/types/movie"
 
@@ -21,7 +21,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         />
         <div className={styles.rating}>
           <Star className={styles.starIcon} size={12} />
-          <span>{movie.vote_average}</span>
+          <span>{Number(movie.vote_average).toFixed(1)}</span>
         </div>
       </div>
       <div className={styles.info}>
@@ -29,8 +29,8 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <div className={styles.meta}>
           <span className={styles.year}>{movie.release_date}</span>
           <div className={styles.runtime}>
-            <Clock size={12} />
-            <span>{movie.runtime} min</span>
+            <Languages size={12} />
+            <span>{(movie.original_language).toUpperCase()}</span>
           </div>
         </div>
       </div>
