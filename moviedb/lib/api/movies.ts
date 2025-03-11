@@ -115,6 +115,20 @@ const getMovieCredits = async (id: number) => {
   }
 };
 
+const getMovieVideos = async (id: number) => {
+  try {
+    const response = await requester.get(`/movie/${id}/videos`, {
+      params: {
+        api_key: apiKey,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching movie videos:", error);
+    return [];
+  }
+};
+
 const movieAPI = {
   getMovies,
   getSingleMovie,
@@ -123,6 +137,7 @@ const movieAPI = {
   getTopRatedMovies,
   getSimilarMovies,
   getMovieCredits,
+  getMovieVideos
 };
 
 export default movieAPI;
