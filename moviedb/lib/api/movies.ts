@@ -8,7 +8,6 @@ const requester = axios.create({
   },
 });
 
-// Get Movies
 const getMovies = async (page?: number) => {
   try {
     const response = await requester.get("/discover/movie", {
@@ -24,7 +23,6 @@ const getMovies = async (page?: number) => {
   }
 };
 
-// Get Single Movie
 const getSingleMovie = async (id: number) => {
   try {
     const response = await requester.get(`/movie/${id}`, {
@@ -39,7 +37,6 @@ const getSingleMovie = async (id: number) => {
   }
 };
 
-// Get Trending Movies (Current Week)
 const getTrendingMovies = async (page?: number) => {
   try {
     const response = await requester.get("/trending/movie/week", {
@@ -55,7 +52,6 @@ const getTrendingMovies = async (page?: number) => {
   }
 };
 
-// Get Coming Soon Movies
 const getComingSoonMovies = async (page?: number) => {
   try {
     const response = await requester.get("/movie/upcoming", {
@@ -71,7 +67,6 @@ const getComingSoonMovies = async (page?: number) => {
   }
 };
 
-// Get Top Rated Movies
 const getTopRatedMovies = async (page?: number) => {
   try {
     const response = await requester.get("/movie/top_rated", {
@@ -97,6 +92,22 @@ const getSimilarMovies = async (id: number) => {
     return response.data.results;
   } catch (error) {
     console.error("Error fetching similar movies:", error);
+    return [];
+  }
+};
+
+const getMoviesByGenre = async (genreId: number, page?: number) => {
+  try {
+    const response = await requester.get("/discover/movie", {
+      params: {
+        api_key: apiKey,
+        with_genres: genreId,
+        page,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error(`Error fetching movies for genre ID ${genreId}:`, error);
     return [];
   }
 };
@@ -129,6 +140,18 @@ const getMovieVideos = async (id: number) => {
   }
 };
 
+const getGenres = async () => {
+  try {
+    const response = await requester.get("/genre/movie/list", {
+      params: { api_key: apiKey },
+    });
+    return response.data.genres; // Returns an array of { id, name }
+  } catch (error) {
+    console.error("Error fetching genres:", error);
+    return [];
+  }
+};
+
 const movieAPI = {
   getMovies,
   getSingleMovie,
@@ -136,8 +159,10 @@ const movieAPI = {
   getComingSoonMovies,
   getTopRatedMovies,
   getSimilarMovies,
+  getMoviesByGenre,
   getMovieCredits,
-  getMovieVideos
+  getMovieVideos,
+  getGenres,
 };
 
 export default movieAPI;

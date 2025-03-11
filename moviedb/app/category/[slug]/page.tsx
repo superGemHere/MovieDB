@@ -1,4 +1,4 @@
-import { TrendingUp, Star, Clock } from "lucide-react";
+import { TrendingUp, Star, Clock, Clapperboard } from "lucide-react";
 import MovieCard from "@/components/movie-card";
 import styles from "./page.module.css";
 import type { Movie } from "@/types/movie";
@@ -18,6 +18,8 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const { slug } = await params;
   const page = (await searchParams).page || "1";
   const pageNumber = parseInt(page, 10) || 1;
+  let genres = await movieAPI.getGenres();
+  let genreId = genres.find((genre) => genre.name.toLowerCase() === slug)?.id;
 
   // Get category title and icon
   let categoryTitle = "";
@@ -39,6 +41,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     default:
       // For genre categories, capitalize the first letter
       categoryTitle = `${slug.charAt(0).toUpperCase() + slug.slice(1)} Movies`;
+      CategoryIcon = Clapperboard;
   }
 
   // Filter movies based on category
@@ -56,7 +59,8 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
       break;
     default:
       // For genre categories
-      movies = await movieAPI.getMovies(pageNumber);
+
+      movies = await movieAPI.getMoviesByGenre(genreId, pageNumber);
   }
 
   return (
