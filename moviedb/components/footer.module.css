@@ -66,6 +66,11 @@
    background-color: var(--primary);
    color: black;
  }
+
+ .attribution{
+  display: flex;
+  gap: .3rem;
+ }
  
  .bottom {
    padding-top: 1.5rem;

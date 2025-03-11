@@ -27,6 +27,10 @@ export default function Footer() {
                 <Github size={20} />
               </Link>
             </div>
+            <div className={styles.attribution}>
+              <span >This project uses data provided by</span>
+              <Link target="_blank" href="https://www.themoviedb.org/">TMDB</Link>
+            </div>
           </div>
 
           <div className={styles.column}>
