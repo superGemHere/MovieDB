@@ -8,6 +8,7 @@ import { SingleMovie } from "@/types/singleMovie"
 import movieAPI from "@/lib/api/movies"
 import { Movie } from "@/types/movie"
 import MovieSlider from "@/components/movie-slider"
+import MovieTrailerModal from "@/components/movie-trailer-modal"
 
 interface MoviePageProps {
   params: Promise<{id: string}>
@@ -48,6 +49,19 @@ type MovieCredits = {
   crew: CrewMember[];
 };
 
+type MovieVideo = {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  published_at: string;
+  site: string;
+  size: number;
+  type: 'Trailer' | 'Teaser' | 'Clip' | 'Featurette' | 'Behind the Scenes' | 'Bloopers'; // Common types from TMDB
+  official: boolean;
+  id: string;
+};
+
 export default async function MoviePage({ params }: MoviePageProps) {
   const {id} = await params
   let movie: SingleMovie = {} as SingleMovie;
@@ -55,13 +69,19 @@ export default async function MoviePage({ params }: MoviePageProps) {
   let crew: CrewMember[]=[];
   let cast : CastMember[]=[];
   let crewResponse: MovieCredits = {} as MovieCredits;
+  let movieVideos: MovieVideo[] = [] as MovieVideo[];
   let intID = parseInt(id, 10);
+  let isOpen: boolean = false;
 
+  const onClose = () => {
+    isOpen = false;
+  }
 
   try{
     movie = await movieAPI.getSingleMovie(intID);
     similarMovies = await movieAPI.getSimilarMovies(intID);
     crewResponse = await movieAPI.getMovieCredits(intID);
+    movieVideos = await movieAPI.getMovieVideos(intID);
     crew = crewResponse.crew.filter(
       (member, index, self) =>
         index === self.findIndex((m) => m.id === member.id)
@@ -70,12 +90,12 @@ export default async function MoviePage({ params }: MoviePageProps) {
       (member, index, self) =>
         index === self.findIndex((m) => m.id === member.id)
     );
-    console.log("single movie", movie)
+    // console.log("single movie", movie)
   }catch(e){
     console.error(e)
   }
 
-
+  console.log('MovieVideos:', movieVideos);
 
   if (!movie) {
     return (
@@ -148,17 +168,21 @@ export default async function MoviePage({ params }: MoviePageProps) {
             <div className={styles.meta}>
               <div className={styles.metaItem} aria-label="Origin Country">
                 <Earth className={styles.metaIcon} />
-                <span className={styles.minorInfo}>{movie.origin_country.join("/")}</span>
+                <span className={styles.minorInfo}>{movie.origin_country != null ? movie.origin_country.join("/") : `No Info` }</span>
               </div>
               <div className={styles.metaItem}>
                 <DollarSign className={styles.metaIcon} />
-                <span className={styles.minorInfo}>Budget: ${movie.budget}</span>
+                <span className={styles.minorInfo}>{movie.budget != 0 ? `Budget: $${movie.budget}` : `Budget: No Info`}</span>
               </div>
               <div className={styles.metaItem}>
                 <HandCoins className={styles.metaIcon} />
-                <span className={styles.minorInfo}>Revenue: ${movie.revenue}</span>
+                <span className={styles.minorInfo}>{movie.budget != 0 ? `Revenue: $${movie.revenue}` : `Revenue: No Info`}</span>
               </div>
             </div>
+            <MovieTrailerModal 
+                trailerKey={movieVideos[0].key} 
+                title={movie.title}
+              />
             <hr className={styles.divider}/>
             <div className={styles.metaSecond}>
               <div className={styles.metaSecondItem}>
@@ -211,18 +235,12 @@ export default async function MoviePage({ params }: MoviePageProps) {
                     >
                       {/* {`${member.name}\n${member.character}`} */}
                       <span >{member.character}</span>
+                      <hr className={styles.divider}/>
                       <span >{member.name}</span>
                     </Link>
                   ))}
                 </div>
               </div>
-            </div>
-            <div className={styles.actions}>
-              <button className={styles.watchButton}>
-                <Play className={styles.playIcon} />
-                Watch Trailer
-              </button>
-              <button className={styles.addButton}>+ Add to Watchlist</button>
             </div>
           </div>
         </div>
@@ -234,6 +252,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
           </div>
         </section>
       </div>
+     
     </main>
   )
 }

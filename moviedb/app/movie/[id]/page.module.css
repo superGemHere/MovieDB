@@ -1,316 +1,275 @@
 .main {
-   position: relative;
-   min-height: 100vh;
- }
- 
- .content {
-   max-width: 1200px;
-   margin: 0 auto;
-   padding: 2rem 1rem;
- }
- 
- .movieInfo {
-   display: flex;
-   gap: 2rem;
-   margin-bottom: 3rem;
- }
- 
- .posterWrapper {
-   position: relative;
-   min-width: 300px;
-   height: 450px;
-   border-radius: 12px;
-   overflow: hidden;
-   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
- }
- 
- .poster {
-   object-fit: cover;
- }
- 
- .details {
-   display: flex;
-   flex-direction: column;
-   gap: 1.5rem;
- }
- 
- .title {
-   font-size: 2.5rem;
-   font-weight: 700;
- }
- 
- .meta {
-   display: flex;
-   gap: 1.5rem;
-   color: #ccc;
- }
+  position: relative;
+  min-height: 100vh;
+}
 
- .metaSecond {
-   display: flex;
-   gap: 1.5rem;
-   align-items: center;
-   color: #ccc;
- }
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 
-  .metaSecondHeader {
-    display: flex;
-    align-items: center;
-    justify-content: unset;
-    gap: .5rem;
-  }
+.movieInfo {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
 
- .metaSecondItem {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 0.5rem;
- }
+.posterWrapper {
+  position: relative;
+  min-width: 300px;
+  height: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
 
- .productionCompanies {
-   display: flex;
-   margin-top: 1rem;
-   gap: 1.5rem;
-   align-items: center;
-   justify-content: center;
- }
- 
-  .productionCompany {
-    display: flex;
+.poster {
+  object-fit: cover;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.meta {
+  display: flex;
+  gap: 1.5rem;
+  color: #ccc;
+}
+
+.metaSecond {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  color: #ccc;
+}
+
+.metaSecondHeader {
+  display: flex;
+  align-items: center;
+  justify-content: unset;
+  gap: .5rem;
+}
+
+.metaSecondItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.productionCompanies {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.productionCompany {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.productionCompany span {
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.productionCompanyLogo {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.starIcon {
+  fill: var(--primary);
+  color: var(--primary);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.metaIcon {
+  opacity: 0.7;
+}
+
+.minorInfo {
+  font-size: .95rem;
+}
+
+.divider {
+  opacity: .3;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.genre {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.8rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+  cursor: default;
+}
+
+.genre:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.genreIcon {
+  opacity: 0.7;
+}
+
+.overview {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.crewCastContainer {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.cast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1 1 50%;
+}
+
+.cast h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ddd;
+}
+
+.castList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.actor {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem 0.8rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+  color: #ddd;
+  gap: .3rem;
+}
+
+.actor:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.similarMovies {
+  display: block;
+  gap: 1.5rem;
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.backButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: black;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #e0b316;
+}
+
+@media (max-width: 768px) {
+  .movieInfo {
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-  }
-
-  .productionCompany span {
-    font-size: 0.85rem;
     text-align: center;
   }
 
-  .productionCompanyLogo{
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 16px;
+  .posterWrapper {
+    min-width: 200px;
+    height: 300px;
   }
 
- .rating {
-   display: flex;
-   align-items: center;
-   gap: 0.5rem;
-   color: var(--primary);
-   font-weight: 600;
- }
- 
- .starIcon {
-   fill: var(--primary);
-   color: var(--primary);
- }
- 
- .metaItem {
-   display: flex;
-   align-items: center;
-   gap: 0.5rem;
- }
- 
- .metaIcon {
-   opacity: 0.7;
- }
+  .title {
+    font-size: 2rem;
+  }
 
- .minorInfo{
-  font-size: .95rem;
- }
+  .meta,
+  .genres,
+  .castList,
+  .actions {
+    justify-content: center;
+  }
 
- .divider{
-   opacity: .3;
- }
- 
- .genres {
-   display: flex;
-   flex-wrap: wrap;
-   gap: 0.75rem;
- }
- 
- .genre {
-   display: flex;
-   align-items: center;
-   gap: 0.25rem;
-   padding: 0.4rem 0.8rem;
-   background-color: rgba(255, 255, 255, 0.1);
-   border-radius: 20px;
-   font-size: 0.85rem;
-   transition: background-color 0.2s;
-   cursor: default;
- }
- 
- .genre:hover {
-   background-color: rgba(255, 255, 255, 0.2);
- }
- 
- .genreIcon {
-   opacity: 0.7;
- }
- 
- .overview {
-   font-size: 1.1rem;
-   line-height: 1.6;
-   color: #ddd;
- }
+  .similarMovies {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
 
- .crewCastContainer{
-    display: flex;
-    gap: 1.5rem;
- }
+@media (max-width: 480px) {
+  .meta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 
- .cast {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 0.75rem;
-   flex: 1 1 50%;
- }
- 
- .cast h3 {
-   font-size: 1.1rem;
-   font-weight: 600;
-   color: #ddd;
- }
- 
- .castList {
-   display: flex;
-   flex-wrap: wrap;
-   gap: 0.75rem;
- }
- 
- .actor {
-  display: flex;
-  flex-direction: column;
-   padding: 0.4rem 0.8rem;
-   background-color: rgba(255, 255, 255, 0.05);
-   border-radius: 20px;
-   font-size: 0.85rem;
-   transition: background-color 0.2s;
-   color: #ddd;
- }
- 
- .actor:hover {
-   background-color: rgba(255, 255, 255, 0.1);
- }
- 
- .actions {
-   display: flex;
-   gap: 1rem;
-   margin-top: 1rem;
- }
- 
- .watchButton {
-   display: flex;
-   align-items: center;
-   gap: 0.5rem;
-   padding: 0.75rem 1.5rem;
-   background-color: var(--primary);
-   color: black;
-   font-weight: 600;
-   border: none;
-   border-radius: 6px;
-   transition: background-color 0.2s;
- }
- 
- .watchButton:hover {
-   background-color: #e0b316;
- }
- 
- .playIcon {
-   fill: black;
- }
- 
- .addButton {
-   padding: 0.75rem 1.5rem;
-   background-color: transparent;
-   color: white;
-   font-weight: 600;
-   border: 2px solid rgba(255, 255, 255, 0.2);
-   border-radius: 6px;
-   transition: all 0.2s;
- }
- 
- .addButton:hover {
-   background-color: rgba(255, 255, 255, 0.1);
-   border-color: rgba(255, 255, 255, 0.4);
- }
- 
- .section {
-   margin-top: 3rem;
- }
- 
- .sectionTitle {
-   font-size: 1.5rem;
-   margin-bottom: 1.5rem;
-   font-weight: 600;
- }
- 
- .similarMovies {
-   display: block;
-   gap: 1.5rem;
- }
- 
- .notFound {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   height: 60vh;
-   text-align: center;
-   gap: 1.5rem;
- }
- 
- .backButton {
-   padding: 0.75rem 1.5rem;
-   background-color: var(--primary);
-   color: black;
-   font-weight: 600;
-   border-radius: 6px;
-   transition: background-color 0.2s;
- }
- 
- .backButton:hover {
-   background-color: #e0b316;
- }
- 
- @media (max-width: 768px) {
-   .movieInfo {
-     flex-direction: column;
-     align-items: center;
-     text-align: center;
-   }
- 
-   .posterWrapper {
-     min-width: 200px;
-     height: 300px;
-   }
- 
-   .title {
-     font-size: 2rem;
-   }
- 
-   .meta,
-   .genres,
-   .castList,
-   .actions {
-     justify-content: center;
-   }
- 
-   .similarMovies {
-     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-   }
- }
- 
- @media (max-width: 480px) {
-   .meta {
-     flex-direction: column;
-     gap: 0.75rem;
-   }
- 
-   .similarMovies {
-     grid-template-columns: repeat(2, 1fr);
-   }
- }
- 
- 
+  .similarMovies {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
