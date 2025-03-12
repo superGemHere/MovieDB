@@ -14,12 +14,19 @@ interface CategoryPageProps {
   }>;
 }
 
+type Genre = {
+  id: number;
+  name: string;
+}
+
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const { slug } = await params;
   const page = (await searchParams).page || "1";
   const pageNumber = parseInt(page, 10) || 1;
-  let genres = await movieAPI.getGenres();
-  let genreId = genres.find((genre) => genre.name.toLowerCase() === slug)?.id;
+  let genres: Genre[] = await movieAPI.getGenres();
+  let genreId: number | undefined = genres.find((genre: Genre) => genre.name.toLowerCase() === slug)?.id;
+
+  console.log('genres', genres);
 
   // Get category title and icon
   let categoryTitle = "";
@@ -59,8 +66,11 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
       break;
     default:
       // For genre categories
-
-      movies = await movieAPI.getMoviesByGenre(genreId, pageNumber);
+      if (genreId !== undefined) {
+        movies = await movieAPI.getMoviesByGenre(genreId, pageNumber);
+      } else {
+        console.error(`Genre ID not found for slug: ${slug}`);
+      }
   }
 
   return (
