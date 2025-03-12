@@ -1,0 +1,65 @@
+.main {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 2rem 1rem;
+ }
+ 
+ .searchContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1.5rem;
+   margin-bottom: 3rem;
+ }
+ 
+ .title {
+   font-size: 2rem;
+   font-weight: 700;
+ }
+ 
+ .results,
+ .trending {
+   margin-top: 2rem;
+ }
+ 
+ .resultsTitle,
+ .trendingTitle {
+   font-size: 1.5rem;
+   margin-bottom: 1.5rem;
+ }
+ 
+ .movieGrid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+   gap: 1.5rem;
+ }
+ 
+ .noResults {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 1rem;
+   padding: 4rem 0;
+   text-align: center;
+   color: #999;
+ }
+ 
+ .noResultsIcon {
+   opacity: 0.5;
+ }
+ 
+ @media (max-width: 768px) {
+   .movieGrid {
+     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+     gap: 1rem;
+   }
+ }
+ 
+ @media (max-width: 480px) {
+   .movieGrid {
+     grid-template-columns: repeat(2, 1fr);
+   }
+ }
+ 
+ 
