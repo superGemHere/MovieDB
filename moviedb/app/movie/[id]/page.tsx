@@ -223,24 +223,25 @@ export default async function MoviePage({ params }: MoviePageProps) {
                   ))}
                 </div>
               </div>
-              <div className={styles.cast}>
-                <h3>Cast</h3>
-                <div className={styles.castList}>
-                  {cast.slice(0, 10).map((member, index) => (
-                    <Link
-                      key={member.id + member.character + index}
-                      target="_blank"
-                      href={`https://www.themoviedb.org/person/${member.id}`}
-                      className={styles.actor}
-                    >
-                      {/* {`${member.name}\n${member.character}`} */}
-                      <span >{member.character}</span>
-                      <hr className={styles.divider}/>
-                      <span >{member.name}</span>
-                    </Link>
-                  ))}
+              {cast.length > 0 && (
+                <div className={styles.cast}>
+                  <h3>Cast</h3>
+                  <div className={styles.castList}>
+                    {cast.slice(0, 10).map((member, index) => (
+                      <Link
+                        key={member.id + member.character + index}
+                        target="_blank"
+                        href={`https://www.themoviedb.org/person/${member.id}`}
+                        className={styles.actor}
+                      >
+                        <span>{member.character}</span>
+                        <hr className={styles.divider} />
+                        <span>{member.name}</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

@@ -130,6 +130,14 @@
      opacity: 1;
    }
  }
+
+ 
+ @media (max-width: 768px) {
+  .actions{
+    align-items: center;
+    justify-content: center;
+  }
+ }
  
  @media (max-width: 640px) {
    .modalContainer {
