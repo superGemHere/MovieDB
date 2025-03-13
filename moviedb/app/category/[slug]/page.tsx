@@ -3,7 +3,9 @@ import MovieCard from "@/components/movie-card";
 import styles from "./page.module.css";
 import type { Movie } from "@/types/movie";
 import movieAPI from "@/lib/api/movies";
-import PaginationControls from "./PaginationControls";
+import PaginationControls from "../../../components/PaginationControls";
+import { Movies } from "@/types/PaginatedMovies";
+import BottomPagination from "@/components/BottomPagination";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -18,6 +20,7 @@ type Genre = {
   id: number;
   name: string;
 }
+
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const { slug } = await params;
@@ -52,22 +55,22 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   }
 
   // Filter movies based on category
-  let movies: Movie[] = [];
+  let movies: Movies = { results: [], totalPages: 0, totalResults: 0 };
 
   switch (slug) {
     case "trending":
-      movies = await movieAPI.getTrendingMovies(pageNumber);
+      movies = await movieAPI.getTrendingMovies(pageNumber) as Movies;
       break;
     case "top-rated":
-      movies = await movieAPI.getTopRatedMovies(pageNumber);
+      movies = await movieAPI.getTopRatedMovies(pageNumber) as Movies;
       break;
     case "coming-soon":
-      movies = await movieAPI.getComingSoonMovies(pageNumber);
+      movies = await movieAPI.getComingSoonMovies(pageNumber) as Movies;
       break;
     default:
       // For genre categories
       if (genreId !== undefined) {
-        movies = await movieAPI.getMoviesByGenre(genreId, pageNumber);
+        movies = await movieAPI.getMoviesByGenre(genreId, pageNumber) as Movies;
       } else {
         console.error(`Genre ID not found for slug: ${slug}`);
       }
@@ -82,14 +85,16 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
         </div>
 
         <div className={styles.stats}>
-          <PaginationControls />
-          <span>{movies.length} movies</span>
+          <PaginationControls pathName="category" maxPageCount={movies.totalPages}/>
+          <span>
+            {movies.totalPages} {`${movies.totalPages === 1 ? "Page" : "Pages"}`}
+          </span>
         </div>
       </div>
 
-      {movies.length > 0 ? (
+      {movies.totalResults > 0 ? (
         <div className={styles.movieGrid}>
-          {movies.map((movie) => (
+          {movies.results.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
@@ -99,6 +104,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
           <p>We couldn't find any movies in this category.</p>
         </div>
       )}
+      <BottomPagination totalPages={movies.totalPages} pathName="category" />
     </main>
   );
 };
