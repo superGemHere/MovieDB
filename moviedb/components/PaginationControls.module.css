@@ -16,6 +16,11 @@
    border: none;
    outline: none;
   }
+
+  .pageButtonWrapper:disabled{
+   opacity: .5;
+   cursor: not-allowed;
+  }
   
   .pageNumber{
    font-size: 1.2rem;
