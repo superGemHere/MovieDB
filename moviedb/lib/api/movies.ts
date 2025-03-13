@@ -8,6 +8,16 @@ const requester = axios.create({
   },
 });
 
+// Interceptor to ensure that the page parameter is never 0 or negative number avoiding API errors
+requester.interceptors.request.use((config) => {
+  if (config.params && config.params.page < 1) {
+    config.params.page = 1;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
 const getMovies = async (page?: number) => {
   try {
     const response = await requester.get("/discover/movie", {
@@ -16,7 +26,11 @@ const getMovies = async (page?: number) => {
         page,
       },
     });
-    return response.data;
+    return {
+      results: response.data.results,
+      totalResults: response.data.total_results,
+      totalPages: response.data.total_pages,
+    };
   } catch (error) {
     console.error("Error fetching movies:", error);
     return [];
@@ -45,7 +59,11 @@ const getTrendingMovies = async (page?: number) => {
         page,
       },
     });
-    return response.data.results;
+    return {
+      results: response.data.results,
+      totalResults: response.data.total_results,
+      totalPages: response.data.total_pages,
+    };
   } catch (error) {
     console.error("Error fetching trending movies:", error);
     return [];
@@ -60,7 +78,11 @@ const getComingSoonMovies = async (page?: number) => {
         page,
       },
     });
-    return response.data.results;
+    return {
+      results: response.data.results,
+      totalResults: response.data.total_results,
+      totalPages: response.data.total_pages,
+    };
   } catch (error) {
     console.error("Error fetching upcoming movies:", error);
     return [];
@@ -75,7 +97,11 @@ const getTopRatedMovies = async (page?: number) => {
         page,
       },
     });
-    return response.data.results;
+    return {
+      results: response.data.results,
+      totalResults: response.data.total_results,
+      totalPages: response.data.total_pages,
+    };
   } catch (error) {
     console.error("Error fetching top-rated movies:", error);
     return [];
@@ -105,10 +131,37 @@ const getMoviesByGenre = async (genreId: number, page?: number) => {
         page,
       },
     });
-    return response.data.results;
+    return {
+      results: response.data.results,
+      totalResults: response.data.total_results,
+      totalPages: response.data.total_pages,
+    };
   } catch (error) {
     console.error(`Error fetching movies for genre ID ${genreId}:`, error);
     return [];
+  }
+};
+
+const findMovie = async (query: string, page = 1) => {
+  if (!query.trim()) return [];
+
+  try {
+    const response = await requester.get("/search/movie", {
+      params: {
+        api_key: apiKey,
+        query,
+        page,
+      },
+    });
+
+    return {
+      results: response.data.results,
+      totalResults: response.data.total_results,
+      totalPages: response.data.total_pages,
+    };
+  } catch (error) {
+    console.error(`Error searching for movies with query "${query}":`, error);
+    throw new Error("Failed to fetch search results");
   }
 };
 
@@ -145,7 +198,7 @@ const getGenres = async () => {
     const response = await requester.get("/genre/movie/list", {
       params: { api_key: apiKey },
     });
-    return response.data.genres; // Returns an array of { id, name }
+    return response.data.genres; 
   } catch (error) {
     console.error("Error fetching genres:", error);
     return [];
@@ -160,6 +213,7 @@ const movieAPI = {
   getTopRatedMovies,
   getSimilarMovies,
   getMoviesByGenre,
+  findMovie,
   getMovieCredits,
   getMovieVideos,
   getGenres,
