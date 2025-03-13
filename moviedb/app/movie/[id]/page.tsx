@@ -45,7 +45,7 @@ type CastMember = {
 
 type MovieCredits = {
   id: number;
-  cast: CastMember[]; // No cast data in the provided response, so keeping it as `any[]`
+  cast: CastMember[]; 
   crew: CrewMember[];
 };
 
@@ -90,7 +90,6 @@ export default async function MoviePage({ params }: MoviePageProps) {
       (member, index, self) =>
         index === self.findIndex((m) => m.id === member.id)
     );
-    // console.log("single movie", movie)
   }catch(e){
     console.error(e)
   }
@@ -179,10 +178,13 @@ export default async function MoviePage({ params }: MoviePageProps) {
                 <span className={styles.minorInfo}>{movie.budget != 0 ? `Revenue: $${movie.revenue}` : `Revenue: No Info`}</span>
               </div>
             </div>
-            <MovieTrailerModal 
-                trailerKey={movieVideos[0].key} 
-                title={movie.title}
-              />
+            {movieVideos.length > 0 && (
+               <MovieTrailerModal 
+               trailerKey={movieVideos[0].key} 
+               title={movie.title}
+             />
+            )}
+           
             <hr className={styles.divider}/>
             <div className={styles.metaSecond}>
               <div className={styles.metaSecondItem}>
