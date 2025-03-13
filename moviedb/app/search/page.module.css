@@ -21,6 +21,20 @@
  .trending {
    margin-top: 2rem;
  }
+
+ .titleAndControls{
+  display: flex;
+  justify-content: space-between;
+ }
+
+ .stats {
+  color: #999;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
  
  .resultsTitle,
  .trendingTitle {
