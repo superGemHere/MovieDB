@@ -62,7 +62,6 @@
   box-sizing: border-box;
 }
 
-/* Responsive adjustments */
 @media (max-width: 1200px) {
   .sliderContainer {
     max-width: 900px;

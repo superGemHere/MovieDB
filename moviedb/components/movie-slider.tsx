@@ -145,7 +145,6 @@ export default function MovieSlider({
   const sliderRef = useRef<HTMLDivElement>(null);
   const slicedMovies = movies.slice(0, slice)
 
-  // Update items per slide based on screen width
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 600) {
@@ -164,7 +163,6 @@ export default function MovieSlider({
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-//   const totalSlides = Math.ceil(movies.length / itemsPerSlide)
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => {

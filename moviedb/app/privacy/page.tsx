@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
     <main className={styles.main}>
       <div className={styles.container}>
         <h1 className={styles.title}>Privacy Policy</h1>
-        <p className={styles.lastUpdated}>Last Updated: March 1, 2023</p>
+        <p className={styles.lastUpdated}>Last Updated: March 5, 2025</p>
 
         <div className={styles.content}>
           <section className={styles.section}>
@@ -112,16 +112,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section className={styles.section}>
-            <h2>6. Data Security</h2>
-            <p>
-              We have implemented appropriate technical and organizational security measures designed to protect the
-              security of any personal information we process. However, please also remember that we cannot guarantee
-              that the internet itself is 100% secure.
-            </p>
-          </section>
-
-          <section className={styles.section}>
-            <h2>7. Changes to This Privacy Policy</h2>
+            <h2>6. Changes to This Privacy Policy</h2>
             <p>
               We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new
               Privacy Policy on this page and updating the "Last Updated" date at the top of this Privacy Policy.
@@ -129,7 +120,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section className={styles.section}>
-            <h2>8. Contact Us</h2>
+            <h2>7. Contact Us</h2>
             <p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
             <address className={styles.address}>
               MovieDB
