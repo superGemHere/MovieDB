@@ -6,12 +6,12 @@ import styles from "./page.module.css"
 import { movies } from "@/data/movies"
 import movieAPI from "../lib/api/movies"
 import MovieSlider from "@/components/movie-slider"
+import type { Movies } from "@/types/PaginatedMovies"
 
 export default async function Home() {
-  // Get trending and top-rated movies
-  const trendingMovies = await movieAPI.getTrendingMovies();
-  const topRatedMovies = await movieAPI.getTopRatedMovies();
-  const comingMovies = await movieAPI.getComingSoonMovies();
+  const trendingMovies: Movies = await movieAPI.getTrendingMovies() as Movies;
+  const topRatedMovies: Movies = await movieAPI.getTopRatedMovies() as Movies;
+  const comingMovies: Movies = await movieAPI.getComingSoonMovies() as Movies;
 
   console.log("movies", trendingMovies)
 
@@ -38,7 +38,7 @@ export default async function Home() {
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div> */}
-        <MovieSlider movies={trendingMovies} sectionTitle="Trending Now" />
+        <MovieSlider movies={trendingMovies.results} sectionTitle="Trending Now" />
       </section>
 
       <section className={styles.section}>
@@ -54,7 +54,7 @@ export default async function Home() {
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div> */}
-        <MovieSlider movies={topRatedMovies} sectionTitle="Top Rated" />
+        <MovieSlider movies={topRatedMovies.results} sectionTitle="Top Rated" />
       </section>
 
       <section className={styles.section}>
@@ -70,7 +70,7 @@ export default async function Home() {
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div> */}
-        <MovieSlider movies={comingMovies} sectionTitle="Coming Soon" />
+        <MovieSlider movies={comingMovies.results} sectionTitle="Coming Soon" />
       </section>
     </main>
   )
