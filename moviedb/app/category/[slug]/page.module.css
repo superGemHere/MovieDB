@@ -74,6 +74,12 @@
    .movieGrid {
      grid-template-columns: repeat(2, 1fr);
    }
+
+   .stats {
+    flex-direction: column;
+    margin-top: 1rem;
+    align-self: center;
+   }
  }
  
  
