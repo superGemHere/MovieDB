@@ -165,6 +165,56 @@ const findMovie = async (query: string, page = 1) => {
   }
 };
 
+const addRemoveWatchlist = async (
+  accountId: number,
+  sessionId: string,
+  movieId: number,
+  isWatchlist: boolean
+) => {
+  try {
+    const response = await requester.post(
+      `/account/${accountId}/watchlist`, 
+      {
+        media_type: "movie",
+        media_id: movieId,
+        watchlist: isWatchlist,
+      },
+      {
+        params: {
+          api_key: apiKey,
+          session_id: sessionId, 
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Error adding to watchlist:", error.response?.data || error.message);
+    } else {
+      console.error("Unexpected error:", error);
+    }
+    return null;
+  }
+};
+
+const getWatchlist = async (accountId: number, sessionId: string, page: number = 1) => {
+  try {
+    const response = await requester.get(`/account/${accountId}/watchlist/movies`, {
+      params: {
+        api_key: apiKey,
+        session_id: sessionId,
+        page: page,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching watchlist:", error);
+    throw error;
+  }
+};
+
 const getMovieCredits = async (id: number) => {
   try {
     const response = await requester.get(`/movie/${id}/credits`, {
@@ -214,6 +264,8 @@ const movieAPI = {
   getSimilarMovies,
   getMoviesByGenre,
   findMovie,
+  addRemoveWatchlist,
+  getWatchlist,
   getMovieCredits,
   getMovieVideos,
   getGenres,
