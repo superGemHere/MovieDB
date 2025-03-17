@@ -29,22 +29,6 @@
    border: 4px solid var(--primary);
  }
  
- .editAvatar {
-   position: absolute;
-   bottom: 0;
-   right: 0;
-   width: 36px;
-   height: 36px;
-   border-radius: 50%;
-   background-color: var(--primary);
-   color: black;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   border: 3px solid var(--background);
-   cursor: pointer;
- }
- 
  .userInfo {
    flex: 1;
  }
@@ -53,11 +37,6 @@
    font-size: 1.8rem;
    font-weight: 700;
    margin-bottom: 0.5rem;
- }
- 
- .userEmail {
-   color: #999;
-   margin-bottom: 1.5rem;
  }
  
  .userStats {
@@ -115,6 +94,8 @@
  
  .tabs {
    display: flex;
+   align-items: center;
+   justify-content: center;
    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
    background-color: rgba(0, 0, 0, 0.2);
  }
