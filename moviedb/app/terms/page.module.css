@@ -75,6 +75,7 @@
  .link {
    color: var(--primary);
    text-decoration: none;
+   margin-right: .3rem ;
  }
  
  .link:hover {

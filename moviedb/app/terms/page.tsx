@@ -6,7 +6,7 @@ export default function TermsOfServicePage() {
     <main className={styles.main}>
       <div className={styles.container}>
         <h1 className={styles.title}>Terms of Service</h1>
-        <p className={styles.lastUpdated}>Last Updated: March 1, 2023</p>
+        <p className={styles.lastUpdated}>Last Updated: March 5, 2025</p>
 
         <div className={styles.content}>
           <section className={styles.section}>
@@ -39,20 +39,24 @@ export default function TermsOfServicePage() {
           </section>
 
           <section className={styles.section}>
-            <h2>3. User Accounts</h2>
+            <h2>3. User Accounts and Authentication</h2>
             <p>
-              When you create an account with us, you guarantee that the information you provide is accurate, complete,
-              and current at all times. Inaccurate, incomplete, or obsolete information may result in the immediate
-              termination of your account on the Service.
+              Our service utilizes The Movie Database (TMDB) for user authentication. When you log in, you are authenticated 
+              through TMDB, and we do not store or manage your login credentials directly. Your use of TMDB authentication is 
+              subject to TMDB’s <a className={styles.link} href="https://www.themoviedb.org/terms-of-use" target="_blank" rel="noopener noreferrer">Terms of Use</a> 
+              and <a className={styles.link} href="https://www.themoviedb.org/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
             </p>
             <p>
-              You are responsible for maintaining the confidentiality of your account and password, including but not
-              limited to restricting access to your computer and/or account. You agree to accept responsibility for all
-              activities that occur under your account or password.
+              By logging in through TMDB, you agree to provide accurate and up-to-date information. Any inaccuracies or violations 
+              of TMDB’s terms may result in restricted access to our service.
             </p>
             <p>
-              You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your
-              account.
+              You are responsible for maintaining the security of your TMDB account, including safeguarding your login credentials. 
+              We do not have control over TMDB accounts and cannot recover lost credentials.
+            </p>
+            <p>
+              If you suspect any unauthorized access to your TMDB account, you must notify TMDB immediately. We are not responsible 
+              for any security breaches or misuse of your TMDB credentials.
             </p>
           </section>
 
