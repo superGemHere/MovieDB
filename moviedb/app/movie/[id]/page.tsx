@@ -94,7 +94,6 @@ export default async function MoviePage({ params }: MoviePageProps) {
     console.error(e)
   }
 
-  console.log('MovieVideos:', movieVideos);
 
   if (!movie) {
     return (
@@ -178,10 +177,18 @@ export default async function MoviePage({ params }: MoviePageProps) {
                 <span className={styles.minorInfo}>{movie.budget != 0 ? `Revenue: $${movie.revenue}` : `Revenue: No Info`}</span>
               </div>
             </div>
-            {movieVideos.length > 0 && (
+            {movieVideos.length > 0 ? (
                <MovieTrailerModal 
-               trailerKey={movieVideos[0].key} 
-               title={movie.title}
+                isVideo={movieVideos.length > 0}
+                trailerKey={movieVideos[0].key} 
+                title={movie.title}
+                movieId={movie.id}
+             />
+            ) :(
+            <MovieTrailerModal 
+                isVideo={movieVideos.length > 0}
+                title={movie.title}
+                movieId={movie.id}
              />
             )}
            
