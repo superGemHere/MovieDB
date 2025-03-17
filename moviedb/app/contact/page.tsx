@@ -182,18 +182,18 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className={styles.mapSection}>
+      {/* <section className={styles.mapSection}>
         <div className={styles.container}>
           <h2 className={styles.mapTitle}>Find Us</h2>
           <div className={styles.map}>
-            {/* Placeholder for a map */}
+             Placeholder for a map
             <div className={styles.mapPlaceholder}>
               <MapPin size={48} />
               <p>Map Placeholder</p>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   )
 }
