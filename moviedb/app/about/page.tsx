@@ -2,6 +2,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { Film, Users, Award, MessageSquare } from "lucide-react"
 import styles from "./page.module.css"
+import logo from "@/public/logo.webp"
+import person1 from "@/public/person1.webp"
+import person2 from "@/public/person2.webp"
+import person3 from "@/public/person3.webp"
+import person4 from "@/public/person4.webp"
+
+const personArr = [
+  {name: 'John Doe', image:person2, position: 'Founder & CEO'},
+  {name: 'Jane Smith', image:person1, position: 'Chief Technology Officer'},
+  {name: 'Bob Tennesy', image:person3, position: 'Lead Designer'},
+  {name: 'Alice Johnson', image:person4, position: 'Head of Content'},
+]
 
 export default function AboutPage() {
   return (
@@ -36,7 +48,7 @@ export default function AboutPage() {
             </div>
             <div className={styles.storyImage}>
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src={logo}
                 alt="MovieDB Team"
                 width={600}
                 height={400}
@@ -87,26 +99,20 @@ export default function AboutPage() {
         <div className={styles.container}>
           <h2 className={styles.sectionTitle}>Meet Our Team</h2>
           <div className={styles.teamGrid}>
-            {[1, 2, 3, 4].map((member) => (
-              <div key={member} className={styles.teamMember}>
+            {personArr.map((member) => (
+              <div key={member.name} className={styles.teamMember}>
                 <div className={styles.memberAvatar}>
                   <Image
-                    src={`/placeholder.svg?height=300&width=300&text=Team Member ${member}`}
-                    alt={`Team Member ${member}`}
+                    src={member.image}
+                    alt={`Team Member ${member.name}`}
                     width={300}
                     height={300}
                     className={styles.avatarImage}
                   />
                 </div>
-                <h3 className={styles.memberName}>Team Member {member}</h3>
+                <h3 className={styles.memberName}>{member.name}</h3>
                 <p className={styles.memberRole}>
-                  {member === 1
-                    ? "Founder & CEO"
-                    : member === 2
-                      ? "Chief Technology Officer"
-                      : member === 3
-                        ? "Head of Content"
-                        : "Lead Designer"}
+                  {member.position}
                 </p>
                 <p className={styles.memberBio}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu
@@ -124,9 +130,12 @@ export default function AboutPage() {
             <h2>Join Our Community</h2>
             <p>Sign up today and start your movie discovery journey with MovieDB.</p>
             <div className={styles.ctaButtons}>
-              <Link href="/register" className={styles.ctaButton}>
-                Create Account
-              </Link>
+              <a
+                href="https://www.themoviedb.org/signup"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.ctaButton}
+              >Create Account</a>
               <Link href="/contact" className={styles.ctaButtonSecondary}>
                 Contact Us
               </Link>
