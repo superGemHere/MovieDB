@@ -1,120 +1,181 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { Eye, EyeOff, Mail, Lock } from "lucide-react"
-import styles from "./page.module.css"
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { LogIn, Film, Star, Clapperboard, ArrowRight } from "lucide-react";
+import styles from "./page.module.css";
+import { useAuth } from "@/context/authContext";
+import { tmdbAuth } from "@/lib/api/auth";
+import movieAPI from "@/lib/api/movies";
+import { Movie } from "@/types/movie";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [error, setError] = useState("")
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const router = useRouter();
+  const {
+    createRequestToken,
+    isAuthenticated,
+    isLoading: authLoading,
+    error: authError
+  } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  useEffect(() => {
+    const fetchPopularMovies = async () => {
+      try {
+        const response = await movieAPI.getTrendingMovies();
+        if ('results' in response) {
+          setMovies(response.results);
+        } else {
+          setErrorMessage("Unexpected response format. Please try again later.");
+        }
+      } catch (err) {
+        setErrorMessage(
+          "Failed to fetch popular movies. Please try again later."
+        );
+      }
+    };
 
-    // Basic validation
-    if (!email || !password) {
-      setError("Please fill in all fields")
-      return
+    fetchPopularMovies();
+  }, []);
+  
+
+  useEffect(
+    () => {
+      if (isAuthenticated) {
+        router.push("/profile");
+      }
+    },
+    [isAuthenticated, router]
+  );
+
+  const handleTMDBLogin = async () => {
+    setErrorMessage("");
+    setIsLoading(true);
+
+    try {
+      const requestToken = await createRequestToken();
+      const authUrl = tmdbAuth.getAuthenticationUrl(requestToken);
+      window.location.href = authUrl;
+    } catch (err) {
+      setErrorMessage(
+        "Failed to initialize TMDB authentication. Please try again."
+      );
+      setIsLoading(false);
     }
+  };
 
-    // Mock login - in a real app, you would call an API
-    console.log("Logging in with:", { email, password })
+  useEffect(
+    () => {
+      if (authError) {
+        setErrorMessage(authError);
+      }
+    },
+    [authError]
+  );
 
-    // Simulate successful login
-    localStorage.setItem("isLoggedIn", "true")
-    router.push("/profile")
+  if (authLoading) {
+    return (
+      <main className={styles.container}>
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner} />
+          <p>Loading authentication...</p>
+        </div>
+      </main>
+    );
   }
 
   return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-        <div className={styles.formWrapper}>
-          <h1 className={styles.title}>Sign In</h1>
-
-          {error && <div className={styles.error}>{error}</div>}
-
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.inputGroup}>
-              <label htmlFor="email" className={styles.label}>
-                Email
-              </label>
-              <div className={styles.inputWrapper}>
-                <Mail className={styles.inputIcon} size={18} />
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className={styles.input}
-                />
-              </div>
+    <main className={styles.container}>
+      <div className={styles.loginWrapper}>
+        <div className={styles.leftPanel}>
+          <div className={styles.contentWrapper}>
+            <div className={styles.logoContainer}>
+              <Film className={styles.logoIcon} />
+              <h1 className={styles.logoText}>MovieDB</h1>
             </div>
 
-            <div className={styles.inputGroup}>
-              <label htmlFor="password" className={styles.label}>
-                Password
-              </label>
-              <div className={styles.inputWrapper}>
-                <Lock className={styles.inputIcon} size={18} />
-                <input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  className={styles.input}
-                />
-                <button
-                  type="button"
-                  className={styles.togglePassword}
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-              </div>
-            </div>
+            <h2 className={styles.welcomeTitle}>Welcome to MovieDB</h2>
+            <p className={styles.welcomeText}>
+              Your ultimate destination for discovering and tracking movies from
+              around the world. Sign in with your TMDB account to access
+              personalized recommendations, create watchlists, and more.
+            </p>
 
-            <div className={styles.forgotPassword}>
-              <Link href="/forgot-password">Forgot password?</Link>
-            </div>
+            {errorMessage &&
+              <div className={styles.error}>
+                {errorMessage}
+              </div>}
 
-            <button type="submit" className={styles.submitButton}>
-              Sign In
+            <button
+              className={styles.tmdbButton}
+              onClick={handleTMDBLogin}
+              disabled={isLoading}
+            >
+              <LogIn className={styles.tmdbIcon} size={20} />
+              {isLoading ? "Connecting..." : "Sign in with TMDB"}
             </button>
-          </form>
 
-          <div className={styles.divider}>
-            <span>OR</span>
-          </div>
+            <div className={styles.infoBox}>
+              <h3 className={styles.infoTitle}>How it works</h3>
+              <ol className={styles.infoList}>
+                <li>Click the button above to connect with TMDB</li>
+                <li>You'll be redirected to TMDB's official site</li>
+                <li>Approve access to your account</li>
+                <li>You'll be automatically redirected back to MovieDB</li>
+              </ol>
+            </div>
 
-          <div className={styles.socialButtons}>
-            <button className={`${styles.socialButton} ${styles.google}`}>Continue with Google</button>
-            <button className={`${styles.socialButton} ${styles.facebook}`}>Continue with Facebook</button>
-          </div>
-
-          <div className={styles.signup}>
-            Don't have an account? <Link href="/register">Sign up</Link>
+            <div className={styles.createAccount}>
+              <p>Don't have a TMDB account?</p>
+              <a
+                href="https://www.themoviedb.org/signup"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.createLink}
+              >
+                Create one <ArrowRight size={14} className={styles.linkIcon} />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className={styles.imageWrapper}>
-          <div className={styles.image} />
-          <div className={styles.imageOverlay}>
-            <h2>Welcome Back!</h2>
-            <p>Sign in to access your personalized movie recommendations, watchlist, and more.</p>
+        <div className={styles.rightPanel}>
+          <div className={styles.posterGrid}>
+            {movies.slice(0, 4).map((movie) => (
+              <div
+              className={styles.posterWrapper}
+              style={{ animationDelay: "6s" }}
+              key={movie.id}
+            >
+              <Image
+                src={`https://image.tmdb.org/t/p/w300${movie?.poster_path}`}
+                alt="Movie poster"
+                width={300}
+                height={450}
+                className={styles.poster}
+              />
+            </div>
+            ))}
+          </div>
+          <div className={styles.overlay}>
+            <div className={styles.featureItem}>
+              <Star className={styles.featureIcon} />
+              <span>Rate your favorite movies</span>
+            </div>
+            <div className={styles.featureItem}>
+              <Clapperboard className={styles.featureIcon} />
+              <span>Create custom watchlists</span>
+            </div>
+            <div className={styles.featureItem}>
+              <Film className={styles.featureIcon} />
+              <span>Get personalized recommendations</span>
+            </div>
           </div>
         </div>
       </div>
     </main>
-  )
+  );
 }
-

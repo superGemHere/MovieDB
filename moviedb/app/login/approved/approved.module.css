@@ -1,0 +1,51 @@
+.successState,
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.successIcon {
+  color: #4caf50;
+  margin-bottom: 1.5rem;
+}
+
+.errorIcon {
+  color: #f44336;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.message {
+  color: #bbb;
+  margin-bottom: 1.5rem;
+}
+
+.redirectMessage {
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.retryButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: black;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.retryButton:hover {
+  background-color: #e0b316;
+}
+
