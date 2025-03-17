@@ -7,6 +7,7 @@ import { movies } from "@/data/movies"
 import movieAPI from "../lib/api/movies"
 import MovieSlider from "@/components/movie-slider"
 import type { Movies } from "@/types/PaginatedMovies"
+import logo from "@/public/logo.webp"
 
 export default async function Home() {
   const trendingMovies: Movies = await movieAPI.getTrendingMovies() as Movies;
@@ -17,7 +18,16 @@ export default async function Home() {
 
   return (
     <main className={styles.main}>
-      <section className={styles.hero}>
+      <section className={styles.hero}
+        style={{
+          backgroundImage: logo
+          ? `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(${logo.src})`
+          : "none",
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+        >
         <div className={styles.heroContent}>
           <h1>Discover Amazing Movies</h1>
           <p>Find the latest and greatest films all in one place</p>
