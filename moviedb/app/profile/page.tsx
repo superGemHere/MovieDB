@@ -12,23 +12,25 @@ import { tmdbAuth } from "@/lib/api/auth"
 import type { User } from "@/types/user"
 import type { WatchlistMovie } from "@/types/movie"
 import movieAPI from "@/lib/api/movies"
+import { useProtectedRoute } from "@/hooks/useProtectedRoute"
+import { useAuth } from "@/context/authContext"
 
 export default function ProfilePage() {
+
+  useProtectedRoute();
+
   const [activeTab, setActiveTab] = useState("watchlist")
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState<User | null>(null)
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [watchlistMovies, setWatchlistMovies] = useState<WatchlistMovie[]>([])
   const router = useRouter()
+  const { isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
-    // Check if user is logged in
-    const loggedIn = localStorage.getItem("isAuthenticated") === "true"
+    const loggedIn = isAuthenticated
     setIsLoggedIn(loggedIn)
 
-    if (!loggedIn) {
-      router.push("/login")
-    }
   }, [router])
 
   useEffect(() => {
@@ -49,10 +51,7 @@ export default function ProfilePage() {
   }, [])
 
   const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated")
-    localStorage.removeItem("moviedb_session_id")
-    localStorage.removeItem("moviedb_user")
-    router.push("/login")
+    logout()
   }
 
   if (!isLoggedIn) {

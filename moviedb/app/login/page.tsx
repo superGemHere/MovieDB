@@ -19,8 +19,15 @@ export default function LoginPage() {
     createRequestToken,
     isAuthenticated,
     isLoading: authLoading,
+    setIsAuthenticated,
     error: authError
   } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/profile");
+    }
+  }, [isAuthenticated, router]);
 
   useEffect(() => {
     const fetchPopularMovies = async () => {
@@ -40,16 +47,6 @@ export default function LoginPage() {
 
     fetchPopularMovies();
   }, []);
-  
-
-  useEffect(
-    () => {
-      if (isAuthenticated) {
-        router.push("/profile");
-      }
-    },
-    [isAuthenticated, router]
-  );
 
   const handleTMDBLogin = async () => {
     setErrorMessage("");
@@ -59,22 +56,21 @@ export default function LoginPage() {
       const requestToken = await createRequestToken();
       const authUrl = tmdbAuth.getAuthenticationUrl(requestToken);
       window.location.href = authUrl;
+      setIsAuthenticated(true);
     } catch (err) {
       setErrorMessage(
         "Failed to initialize TMDB authentication. Please try again."
       );
       setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
-  useEffect(
-    () => {
-      if (authError) {
-        setErrorMessage(authError);
-      }
-    },
-    [authError]
-  );
+  useEffect(() => {
+    if (authError) {
+      setErrorMessage(authError);
+    }
+  }, [authError]);
 
   if (authLoading) {
     return (

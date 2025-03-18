@@ -39,15 +39,17 @@ const getStoredAuthData = () => {
 
   const storedUser = localStorage.getItem("moviedb_user")
   const storedSessionId = localStorage.getItem("moviedb_session_id")
+  const isLogged = localStorage.getItem("isAuthenticated")
 
   return {
     user: storedUser ? JSON.parse(storedUser) : null,
     sessionId: storedSessionId,
+    isLogged
   }
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser, isLogged] = useState<User | null>(null)
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -56,10 +58,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Check for user and session in localStorage
-    const { user, sessionId } = getStoredAuthData()
+    const { user, sessionId, isLogged } = getStoredAuthData()
     setUser(user)
     setSessionId(sessionId)
     setIsLoading(false)
+    setIsAuthenticated(isLogged === "true")
   }, [])
 
   // Create a request token for TMDB authentication
@@ -94,6 +97,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       // Step 4: Get account details
       await fetchUserData(newSessionId)
+      setIsAuthenticated(true)
     } catch (err: any) {
       setError(err.message || "Login failed. Please check your credentials.")
       throw err
@@ -113,6 +117,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       // Get account details
       await fetchUserData(newSessionId)
+      setIsAuthenticated(true)
     } catch (err: any) {
       setError(err.message || "Authentication failed")
       throw err
@@ -174,8 +179,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Clear state and localStorage
       setUser(null)
       setSessionId(null)
+      setIsAuthenticated(false)
       localStorage.removeItem("moviedb_user")
       localStorage.removeItem("moviedb_session_id")
+      localStorage.removeItem("isAuthenticated")
     } catch (err) {
       console.error("Logout error:", err)
     } finally {
