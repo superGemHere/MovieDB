@@ -49,7 +49,7 @@ const getStoredAuthData = () => {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser, isLogged] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
