@@ -41,7 +41,6 @@ export default function ProfilePage() {
       setSessionId(sessionId)
       if(sessionId && user) {
         const watchlistResponse = await movieAPI.getWatchlist(user.id, sessionId, 1)
-        console.log("watchlist response", watchlistResponse)
         if ('results' in watchlistResponse) {
           setWatchlistMovies(watchlistResponse.results)
         }
