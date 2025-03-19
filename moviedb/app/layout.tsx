@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "MovieDB - Find and Discover Movies",
-  description: "Browse and discover movies, TV shows, and more",
+  description: "Browse and discover movies, add to your watchlist and more",
 }
 
 export default function RootLayout({
