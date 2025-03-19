@@ -107,7 +107,6 @@ export default async function MoviePage({ params }: MoviePageProps) {
     )
   }
 
-  // Get similar movies based on genre
 
   return (
     <main className={styles.main}

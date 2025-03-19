@@ -25,7 +25,6 @@ export default function ContactPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
     setTimeout(() => {
       console.log("Form submitted:", formData)
       setIsSubmitting(false)
@@ -37,7 +36,6 @@ export default function ContactPage() {
         message: "",
       })
 
-      // Reset success message after 5 seconds
       setTimeout(() => {
         setSubmitSuccess(false)
       }, 5000)

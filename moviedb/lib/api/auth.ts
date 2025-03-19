@@ -14,12 +14,10 @@ const USER_ENDPOINTS = {
   ACCOUNT_DETAILS: `${TMDB_API_BASE_URL}/account`,
 }
 
-// Helper function to add API key to URL
 const addApiKey = (url: string) => {
   return `${url}?api_key=${API_KEY}`
 }
 
-// Helper function for API requests
 const fetchFromTMDB = async (url: string, options = {}) => {
   try {
     const response = await fetch(url, options)
@@ -33,16 +31,13 @@ const fetchFromTMDB = async (url: string, options = {}) => {
   }
 }
 
-// Authentication functions
 export const tmdbAuth = {
-  // Step 1: Create a new request token
   createRequestToken: async () => {
     const url = addApiKey(AUTH_ENDPOINTS.REQUEST_TOKEN)
     const data = await fetchFromTMDB(url)
     return data.request_token
   },
 
-  // Step 2: Validate the request token with login credentials
   validateRequestToken: async (requestToken: string, username: string, password: string) => {
     const url = addApiKey(AUTH_ENDPOINTS.VALIDATE_WITH_LOGIN)
     const options = {
@@ -60,7 +55,6 @@ export const tmdbAuth = {
     return data.request_token
   },
 
-  // Step 3: Create a session ID with the validated request token
   createSession: async (requestToken: string) => {
     const url = addApiKey(AUTH_ENDPOINTS.CREATE_SESSION)
     const options = {
@@ -76,7 +70,6 @@ export const tmdbAuth = {
     return data.session_id
   },
 
-  // Step 4: Delete the session when logging out
   deleteSession: async (sessionId: string) => {
     const url = addApiKey(AUTH_ENDPOINTS.DELETE_SESSION)
     const options = {
@@ -91,13 +84,11 @@ export const tmdbAuth = {
     return await fetchFromTMDB(url, options)
   },
 
-  // Get the authentication URL for redirecting the user
   getAuthenticationUrl: (requestToken: string) => {
     return `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=${encodeURIComponent(window.location.origin + "/login/approved")}`
   },
 }
 
-// User functions
 export const tmdbUser = {
   getAccountDetails: async (sessionId: string) => {
     const url = `${addApiKey(USER_ENDPOINTS.ACCOUNT_DETAILS)}&session_id=${sessionId}`
@@ -106,7 +97,6 @@ export const tmdbUser = {
 }
 
 
-// Image functions
 export const tmdbImages = {
   getPosterUrl: (path: string, size = "w500") => {
     if (!path) return null

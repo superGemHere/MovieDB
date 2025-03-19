@@ -21,17 +21,41 @@ type Genre = {
   name: string;
 }
 
+const genreMapping: Record<string, string> = {
+  "action": "Action",
+  "adventure": "Adventure",
+  "animation": "Animation",
+  "comedy": "Comedy",
+  "crime": "Crime",
+  "documentary": "Documentary",
+  "drama": "Drama",
+  "family": "Family",
+  "fantasy": "Fantasy",
+  "history": "History",
+  "horror": "Horror",
+  "music": "Music",
+  "mystery": "Mystery",
+  "romance": "Romance",
+  "sci-fi": "Science Fiction", 
+  "tv-movie": "TV Movie",
+  "thriller": "Thriller",
+  "war": "War",
+  "western": "Western",
+};
+
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const { slug } = await params;
   const page = (await searchParams).page || "1";
   const pageNumber = parseInt(page, 10) || 1;
   let genres: Genre[] = await movieAPI.getGenres();
-  let genreId: number | undefined = genres.find((genre: Genre) => genre.name.toLowerCase() === slug)?.id;
+  const normalizedSlug = genreMapping[slug] || slug;
+  let genreId: number | undefined = genres.find((genre: Genre) => 
+    genre.name.toLowerCase() === normalizedSlug.toLowerCase()
+  )?.id;
 
   console.log('genres', genres);
 
-  // Get category title and icon
   let categoryTitle = "";
   let CategoryIcon = TrendingUp;
 
@@ -49,12 +73,10 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
       CategoryIcon = Clock;
       break;
     default:
-      // For genre categories, capitalize the first letter
       categoryTitle = `${slug.charAt(0).toUpperCase() + slug.slice(1)} Movies`;
       CategoryIcon = Clapperboard;
   }
 
-  // Filter movies based on category
   let movies: Movies = { results: [], totalPages: 0, totalResults: 0 };
 
   switch (slug) {
@@ -68,7 +90,6 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
       movies = await movieAPI.getComingSoonMovies(pageNumber) as Movies;
       break;
     default:
-      // For genre categories
       if (genreId !== undefined) {
         movies = await movieAPI.getMoviesByGenre(genreId, pageNumber) as Movies;
       } else {

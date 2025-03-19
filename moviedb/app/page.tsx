@@ -43,11 +43,6 @@ export default async function Home() {
             View All
           </Link>
         </div>
-        {/* <div className={styles.movieGrid}>
-          {trendingMovies.slice(6, 12).map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div> */}
         <MovieSlider movies={trendingMovies.results} sectionTitle="Trending Now" />
       </section>
 
@@ -59,11 +54,6 @@ export default async function Home() {
             View All
           </Link>
         </div>
-        {/* <div className={styles.movieGrid}>
-          {topRatedMovies.slice(6, 12).map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div> */}
         <MovieSlider movies={topRatedMovies.results} sectionTitle="Top Rated" />
       </section>
 
@@ -75,11 +65,6 @@ export default async function Home() {
             View All
           </Link>
         </div>
-        {/* <div className={styles.movieGrid}>
-          {comingMovies.slice(6, 12).map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div> */}
         <MovieSlider movies={comingMovies.results} sectionTitle="Coming Soon" />
       </section>
     </main>

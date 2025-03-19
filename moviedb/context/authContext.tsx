@@ -57,7 +57,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   
 
   useEffect(() => {
-    // Check for user and session in localStorage
     const { user, sessionId, isLogged } = getStoredAuthData()
     setUser(user)
     setSessionId(sessionId)
@@ -65,7 +64,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsAuthenticated(isLogged === "true")
   }, [])
 
-  // Create a request token for TMDB authentication
   const createRequestToken = async (): Promise<string> => {
     try {
       setIsLoading(true)
@@ -80,22 +78,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  // Login with TMDB credentials
   const loginWithTMDB = async (username: string, password: string) => {
     try {
       setIsLoading(true)
       setError(null)
 
-      // Step 1: Create a request token
       const requestToken = await tmdbAuth.createRequestToken()
 
-      // Step 2: Validate the request token with login credentials
       const validatedToken = await tmdbAuth.validateRequestToken(requestToken, username, password)
 
-      // Step 3: Create a session ID
       const newSessionId = await tmdbAuth.createSession(validatedToken)
 
-      // Step 4: Get account details
       await fetchUserData(newSessionId)
       setIsAuthenticated(true)
     } catch (err: any) {
@@ -106,16 +99,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  // Login with an approved request token (after redirect from TMDB)
   const loginWithToken = async (requestToken: string) => {
     try {
       setIsLoading(true)
       setError(null)
 
-      // Create a session ID with the approved token
       const newSessionId = await tmdbAuth.createSession(requestToken)
 
-      // Get account details
       await fetchUserData(newSessionId)
       setIsAuthenticated(true)
     } catch (err: any) {
@@ -126,13 +116,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  // Fetch user data with a valid session ID
   const fetchUserData = async (newSessionId: string) => {
     try {
-      // Get account details
       const accountData: TMDBUser = await tmdbUser.getAccountDetails(newSessionId)
 
-      // Format user data
       const userData: User = {
         id: accountData.id,
         name: accountData.name || accountData.username,
@@ -140,7 +127,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         avatar: getAvatarUrl(accountData),
       }
 
-      // Save to state and localStorage
       setUser(userData)
       setSessionId(newSessionId)
       localStorage.setItem("moviedb_user", JSON.stringify(userData))
@@ -150,33 +136,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  // Get avatar URL from TMDB user data
   const getAvatarUrl = (tmdbUser: TMDBUser): string => {
-    // Try to get TMDB avatar
     if (tmdbUser.avatar?.tmdb?.avatar_path) {
       return tmdbImages.getProfileUrl(tmdbUser.avatar.tmdb.avatar_path) || "/placeholder.svg?height=200&width=200"
     }
 
-    // Try to get Gravatar
     if (tmdbUser.avatar?.gravatar?.hash) {
       return `https://www.gravatar.com/avatar/${tmdbUser.avatar.gravatar.hash}?s=200`
     }
 
-    // Default avatar
     return "/placeholder.svg?height=200&width=200"
   }
 
-  // Logout
   const logout = async () => {
     try {
       setIsLoading(true)
 
-      // Only call the API if we have a session ID
       if (sessionId) {
         await tmdbAuth.deleteSession(sessionId)
       }
 
-      // Clear state and localStorage
       setUser(null)
       setSessionId(null)
       setIsAuthenticated(false)
