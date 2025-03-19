@@ -6,6 +6,7 @@ import Footer from "@/components/footer"
 import "./globals.css"
 import { AuthProvider } from "@/context/authContext"
 import { ToastProvider } from "@/context/toastContext"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] })
 
