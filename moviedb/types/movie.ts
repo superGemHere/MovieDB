@@ -13,9 +13,9 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
- }
- 
- export type WatchlistMovie = {
+}
+
+export type WatchlistMovie = {
   adult: boolean;
   backdrop_path: string | null;
   genre_ids: number[];
@@ -39,4 +39,8 @@ export type WatchlistResponse = {
   total_results: number;
   total_pages: number;
 };
- 
+
+export type Genre = {
+  id: number;
+  name: string;
+}

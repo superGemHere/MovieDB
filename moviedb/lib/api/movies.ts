@@ -8,7 +8,6 @@ const requester = axios.create({
   },
 });
 
-// Interceptor to ensure that the page parameter is never 0 or negative number avoiding API errors
 requester.interceptors.request.use((config) => {
   if (config.params && config.params.page < 1) {
     config.params.page = 1;
@@ -27,13 +26,17 @@ const getMovies = async (page?: number) => {
       },
     });
     return {
-      results: response.data.results,
-      totalResults: response.data.total_results,
-      totalPages: response.data.total_pages,
+      results: response.data.results || [],
+      totalResults: response.data.total_results || 0,
+      totalPages: response.data.total_pages || 1,
     };
   } catch (error) {
     console.error("Error fetching movies:", error);
-    return [];
+    return {
+      results: [],
+      totalResults: 0,
+      totalPages: 1,
+    };
   }
 };
 
@@ -60,13 +63,17 @@ const getTrendingMovies = async (page?: number) => {
       },
     });
     return {
-      results: response.data.results,
-      totalResults: response.data.total_results,
-      totalPages: response.data.total_pages,
+      results: response.data.results || [],
+      totalResults: response.data.total_results || 0,
+      totalPages: response.data.total_pages || 1,
     };
   } catch (error) {
     console.error("Error fetching trending movies:", error);
-    return [];
+    return {
+      results: [],
+      totalResults: 0,
+      totalPages: 1,
+    };
   }
 };
 
@@ -79,13 +86,17 @@ const getComingSoonMovies = async (page?: number) => {
       },
     });
     return {
-      results: response.data.results,
-      totalResults: response.data.total_results,
-      totalPages: response.data.total_pages,
+      results: response.data.results || [],
+      totalResults: response.data.total_results || 0,
+      totalPages: response.data.total_pages || 1,
     };
   } catch (error) {
     console.error("Error fetching upcoming movies:", error);
-    return [];
+    return {
+      results: [],
+      totalResults: 0,
+      totalPages: 1,
+    };
   }
 };
 
@@ -98,13 +109,17 @@ const getTopRatedMovies = async (page?: number) => {
       },
     });
     return {
-      results: response.data.results,
-      totalResults: response.data.total_results,
-      totalPages: response.data.total_pages,
+      results: response.data.results || [],
+      totalResults: response.data.total_results || 0,
+      totalPages: response.data.total_pages || 1,
     };
   } catch (error) {
     console.error("Error fetching top-rated movies:", error);
-    return [];
+    return {
+      results: [],
+      totalResults: 0,
+      totalPages: 1,
+    };
   }
 };
 
@@ -132,13 +147,17 @@ const getMoviesByGenre = async (genreId: number, page?: number) => {
       },
     });
     return {
-      results: response.data.results,
-      totalResults: response.data.total_results,
-      totalPages: response.data.total_pages,
+      results: response.data.results || [],
+      totalResults: response.data.total_results || 0,
+      totalPages: response.data.total_pages || 1,
     };
   } catch (error) {
     console.error(`Error fetching movies for genre ID ${genreId}:`, error);
-    return [];
+    return {
+      results: [],
+      totalResults: 0,
+      totalPages: 1,
+    };
   }
 };
 
@@ -155,9 +174,9 @@ const findMovie = async (query: string, page = 1) => {
     });
 
     return {
-      results: response.data.results,
-      totalResults: response.data.total_results,
-      totalPages: response.data.total_pages,
+      results: response.data.results || [],
+      totalResults: response.data.total_results || 0,
+      totalPages: response.data.total_pages || 1,
     };
   } catch (error) {
     console.error(`Error searching for movies with query "${query}":`, error);
