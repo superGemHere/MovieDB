@@ -6,6 +6,8 @@ import movieAPI from "@/lib/api/movies";
 import PaginationControls from "../../../components/PaginationControls";
 import { Movies } from "@/types/PaginatedMovies";
 import BottomPagination from "@/components/BottomPagination";
+import { genreMapping } from "@/lib/genreMapping";
+import type { Genre } from "@/types/movie";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -15,33 +17,6 @@ interface CategoryPageProps {
     page: string;
   }>;
 }
-
-type Genre = {
-  id: number;
-  name: string;
-}
-
-const genreMapping: Record<string, string> = {
-  "action": "Action",
-  "adventure": "Adventure",
-  "animation": "Animation",
-  "comedy": "Comedy",
-  "crime": "Crime",
-  "documentary": "Documentary",
-  "drama": "Drama",
-  "family": "Family",
-  "fantasy": "Fantasy",
-  "history": "History",
-  "horror": "Horror",
-  "music": "Music",
-  "mystery": "Mystery",
-  "romance": "Romance",
-  "sci-fi": "Science Fiction", 
-  "tv-movie": "TV Movie",
-  "thriller": "Thriller",
-  "war": "War",
-  "western": "Western",
-};
 
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
