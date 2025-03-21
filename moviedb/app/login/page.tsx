@@ -9,6 +9,7 @@ import { useAuth } from "@/context/authContext";
 import { tmdbAuth } from "@/lib/api/auth";
 import movieAPI from "@/lib/api/movies";
 import { Movie } from "@/types/movie";
+import fallbackImage from "@/public/logo.webp";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -147,7 +148,7 @@ export default function LoginPage() {
               key={movie.id}
             >
               <Image
-                src={`https://image.tmdb.org/t/p/w300${movie?.poster_path}`}
+                 src={movie?.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : fallbackImage}
                 alt="Movie poster"
                 width={300}
                 height={450}

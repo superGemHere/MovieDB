@@ -9,6 +9,7 @@ import movieAPI from "@/lib/api/movies"
 import { Movie } from "@/types/movie"
 import MovieSlider from "@/components/movie-slider"
 import MovieTrailerModal from "@/components/movie-trailer-modal"
+import fallbackImage from "@/public/logo.webp"
 
 interface MoviePageProps {
   params: Promise<{id: string}>
@@ -126,7 +127,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
         >
           <div className={styles.posterWrapper}>
             <Image
-              src={`https://image.tmdb.org/t/p/w300${movie?.poster_path}` || "/placeholder.svg"}
+               src={movie?.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : fallbackImage}
               alt={movie.title}
               fill
               sizes="(max-width: 768px) 200px, 300px"

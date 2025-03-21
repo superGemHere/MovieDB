@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Star, Clock, Languages } from "lucide-react"
 import styles from "./movie-card.module.css"
 import type { Movie } from "@/types/movie"
+import fallbackImage from "@/public/logo.webp"
 
 interface MovieCardProps {
   movie: Movie
@@ -13,7 +14,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
     <Link href={`/movie/${movie.id}`} className={styles.card}>
       <div className={styles.poster}>
         <Image
-          src={`https://image.tmdb.org/t/p/w300${movie?.poster_path}` || "/placeholder.svg"}
+          src={movie?.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : fallbackImage}
           alt={movie.title}
           fill
           sizes="(max-width: 768px) 140px, 180px"
