@@ -123,7 +123,7 @@ export default function PrivacyPolicyPage() {
             <h2>7. Contact Us</h2>
             <p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
             <address className={styles.address}>
-              MovieDB
+              MovieDB Info
               <br />
               123 Movie Street
               <br />

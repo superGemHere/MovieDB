@@ -28,6 +28,8 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     genre.name.toLowerCase() === normalizedSlug.toLowerCase()
   )?.id;
 
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
   let categoryTitle = "";
   let CategoryIcon = TrendingUp;
 
@@ -70,12 +72,12 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   }
 
   const metaDescription = `Explore the best ${categoryTitle.toLowerCase()} and discover new movies.`;
-  const canonicalUrl = `https://moviedb-virid.vercel.app/category/${slug}`;
+  const canonicalUrl = `${BASE_URL}/category/${slug}`;
 
   return (
     <>
       <Head>
-        <title>{categoryTitle} | MovieDB</title>
+        <title>{categoryTitle} | MovieDB Info</title>
         <meta name="description" content={metaDescription} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
@@ -90,9 +92,9 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
               "url": canonicalUrl,
               "mainEntityOfPage": {
                 "@type": "WebSite",
-                "@id": "https://moviedb-virid.vercel.app/",
+                "@id": `${BASE_URL}/`,
               },
-              "image": "https://moviedb-virid.vercel.app/logo.webp",
+              "image": `${BASE_URL}/logo.webp`,
             }),
           }}
         />

@@ -11,17 +11,17 @@ import Head from "next/head";
 
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
-    title: "Home | MovieDB",
+    title: "Home | MovieDB Info",
     description: "Discover the latest and greatest movies all in one place.",
     openGraph: {
-      title: "MovieDB",
+      title: "MovieDB Info",
       description: "Explore trending, top-rated, and upcoming movies.",
       images: [
         {
           url: logo.src,
           width: 800,
           height: 600,
-          alt: "MovieDB Logo",
+          alt: "MovieDB Info Logo",
         },
       ],
     },
@@ -34,6 +34,7 @@ export default async function Home() {
   const comingMovies: Movies = await movieAPI.getComingSoonMovies() as Movies;
 
   console.log("movies", trendingMovies);
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   return (
     <>
@@ -44,15 +45,15 @@ export default async function Home() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "MovieDB",
+              "name": "MovieDB Info",
               "description": "Discover the latest and greatest movies all in one place.",
-              "url": "https://moviedb-virid.vercel.app/",
-              "image": "https://moviedb-virid.vercel.app/logo.webp", 
+              "url": `${BASE_URL}/`,
+              "image": `${BASE_URL}/logo.webp`, 
             }),
           }}
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://moviedb-virid.vercel.app/" />
+        <link rel="canonical" href={`${BASE_URL}/`} />
       </Head>
       <main className={styles.main}>
         <section

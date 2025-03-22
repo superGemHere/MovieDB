@@ -23,9 +23,9 @@ export default function FaqPage() {
       category: "account",
     },
     {
-      question: "Is MovieDB free to use?",
+      question: "Is MovieDB Info free to use?",
       answer:
-        "Yes, MovieDB is completely free to use! You can browse movies, read reviews, and create watchlists without any cost. We also offer a premium subscription that provides additional features like advanced filtering, ad-free experience, and early access to new features.",
+        "Yes, MovieDB Info is completely free to use! You can browse movies, read reviews, and create watchlists without any cost. We also offer a premium subscription that provides additional features like advanced filtering, ad-free experience, and early access to new features.",
       category: "general",
     },
     {
@@ -93,7 +93,7 @@ export default function FaqPage() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>Frequently Asked Questions</h1>
-          <p className={styles.subtitle}>Find answers to common questions about MovieDB</p>
+          <p className={styles.subtitle}>Find answers to common questions about MovieDB Info</p>
 
           <div className={styles.searchContainer}>
             <div className={styles.searchBar}>

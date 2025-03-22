@@ -28,7 +28,7 @@ export default function Footer() {
               </Link>
             </div>
             <div className={styles.attribution}>
-              <span >This project uses data provided by</span>
+              <span >This project is made for portfolio and uses data provided by</span>
               <Link target="_blank" href="https://www.themoviedb.org/">TMDB</Link>
             </div>
           </div>
@@ -53,7 +53,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <p>&copy; {new Date().getFullYear()} MovieDB. All rights reserved by superGemHere.</p>
+          <p>&copy; {new Date().getFullYear()} MovieDB Info. All rights reserved by superGemHere.</p>
         </div>
       </div>
     </footer>

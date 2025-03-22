@@ -3,7 +3,7 @@ import movieAPI from "@/lib/api/movies"; // Import movie API
 import { genreMapping } from "@/lib/genreMapping"; // Import genre mapping
 import { Genre } from '@/types/movie';
 
-const BASE_URL = "https://moviedb-virid.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const trendingMovies = await movieAPI.getTrendingMovies(1);
@@ -15,7 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${BASE_URL}/category/${category}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
-    priority: 0.8,
+    priority: 0.9,
   }));
 
   const genrePages = genres
@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${BASE_URL}/category/${slug}`,
             lastModified: new Date(),
             changeFrequency: "monthly",
-            priority: 0.6,
+            priority: 0.8,
           }
         : null;
     })
@@ -44,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${BASE_URL}/movie/${movie.id}`,
     lastModified: new Date(),
     changeFrequency: "daily",
-    priority: 0.9,
+    priority: 1,
   }));
 
   return [
@@ -58,7 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE_URL}/movies`,
       lastModified: new Date(),
       changeFrequency: "daily",
-      priority: 0.9,
+      priority: 1,
     },
     ...categoryPages,
     ...genrePages,

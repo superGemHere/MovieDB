@@ -17,7 +17,7 @@ export default function Header() {
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
           <Film className={styles.logoIcon} />
-          <span className={styles.logoText}>MovieDB</span>
+          <span className={styles.logoText}>MovieDB Info</span>
         </Link>
 
         <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}>

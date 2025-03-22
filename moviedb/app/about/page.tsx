@@ -20,7 +20,7 @@ export default function AboutPage() {
     <main className={styles.main}>
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1 className={styles.title}>About MovieDB</h1>
+          <h1 className={styles.title}>About MovieDB Info</h1>
           <p className={styles.subtitle}>Your ultimate destination for discovering and exploring movies</p>
         </div>
       </section>
@@ -31,7 +31,7 @@ export default function AboutPage() {
           <div className={styles.storyContent}>
             <div className={styles.storyText}>
               <p>
-                MovieDB was founded in 2023 with a simple mission: to help movie enthusiasts discover and explore films
+                MovieDB Info was founded in 2025 with a simple mission: Portfolio project but also to help movie enthusiasts discover and explore films
                 from around the world. What started as a passion project has grown into a comprehensive platform used by
                 millions of movie lovers globally.
               </p>
@@ -41,7 +41,7 @@ export default function AboutPage() {
                 and bring people together.
               </p>
               <p>
-                Today, MovieDB offers information on thousands of movies, from Hollywood blockbusters to independent
+                Today, MovieDB Info offers information on thousands of movies thanks to TMDB, from Hollywood blockbusters to independent
                 gems. We're constantly improving our platform and adding new features to enhance your movie exploration
                 journey.
               </p>
@@ -49,7 +49,7 @@ export default function AboutPage() {
             <div className={styles.storyImage}>
               <Image
                 src={logo}
-                alt="MovieDB Team"
+                alt="MovieDB Info Team"
                 width={600}
                 height={400}
                 className={styles.image}
@@ -128,7 +128,7 @@ export default function AboutPage() {
         <div className={styles.container}>
           <div className={styles.ctaContent}>
             <h2>Join Our Community</h2>
-            <p>Sign up today and start your movie discovery journey with MovieDB.</p>
+            <p>Sign up today and start your movie discovery journey with MovieDB Info.</p>
             <div className={styles.ctaButtons}>
               <a
                 href="https://www.themoviedb.org/signup"

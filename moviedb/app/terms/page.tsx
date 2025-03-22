@@ -74,31 +74,6 @@ export default function TermsOfServicePage() {
               protecting those rights.
             </p>
           </section>
-
-          <section className={styles.section}>
-            <h2>5. Prohibited Uses</h2>
-            <p>
-              You may use the Service only for lawful purposes and in accordance with these Terms. You agree not to use
-              the Service:
-            </p>
-            <ul>
-              <li>In any way that violates any applicable national or international law or regulation</li>
-              <li>For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way</li>
-              <li>
-                To transmit, or procure the sending of, any advertising or promotional material, including any "junk
-                mail," "chain letter," "spam," or any other similar solicitation
-              </li>
-              <li>
-                To impersonate or attempt to impersonate MovieDB, a MovieDB employee, another user, or any other person
-                or entity
-              </li>
-              <li>
-                In any way that infringes upon the rights of others, or in any way is illegal, threatening, fraudulent,
-                or harmful
-              </li>
-            </ul>
-          </section>
-
           <section className={styles.section}>
             <h2>6. Intellectual Property</h2>
             <p>

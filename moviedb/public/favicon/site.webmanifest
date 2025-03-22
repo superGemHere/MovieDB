@@ -1,6 +1,6 @@
 {
-  "name": "MovieDB",
-  "short_name": "MovieDB",
+  "name": "MovieDB Info",
+  "short_name": "MovieDB Info",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
