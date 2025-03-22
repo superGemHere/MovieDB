@@ -132,6 +132,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
               fill
               sizes="(max-width: 768px) 200px, 300px"
               className={styles.poster}
+              priority
             />
           </div>
 

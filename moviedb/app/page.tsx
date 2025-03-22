@@ -13,6 +13,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
   return {
     title: "Home | MovieDB Info",
     description: "Discover the latest and greatest movies all in one place.",
+    metadataBase: new URL("https://moviedb-info.vercel.app"),
     openGraph: {
       title: "MovieDB Info",
       description: "Explore trending, top-rated, and upcoming movies.",
@@ -34,7 +35,7 @@ export default async function Home() {
   const comingMovies: Movies = await movieAPI.getComingSoonMovies() as Movies;
 
   console.log("movies", trendingMovies);
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const BASE_URL = "https://moviedb-info.vercel.app";
 
   return (
     <>

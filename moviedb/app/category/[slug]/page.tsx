@@ -28,7 +28,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     genre.name.toLowerCase() === normalizedSlug.toLowerCase()
   )?.id;
 
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const BASE_URL = "https://moviedb-info.vercel.app";
 
   let categoryTitle = "";
   let CategoryIcon = TrendingUp;

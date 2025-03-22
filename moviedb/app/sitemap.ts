@@ -3,7 +3,7 @@ import movieAPI from "@/lib/api/movies"; // Import movie API
 import { genreMapping } from "@/lib/genreMapping"; // Import genre mapping
 import { Genre } from '@/types/movie';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = "https://moviedb-info.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const trendingMovies = await movieAPI.getTrendingMovies(1);
