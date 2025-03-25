@@ -54,12 +54,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 1,
     },
-    {
-      url: `${BASE_URL}/movies`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1,
-    },
     ...categoryPages,
     ...genrePages,
     ...movieUrls,
