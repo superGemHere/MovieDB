@@ -22,6 +22,7 @@ export default function AboutPage() {
         <div className={styles.heroContent}>
           <h1 className={styles.title}>About MovieDB Info</h1>
           <p className={styles.subtitle}>Your ultimate destination for discovering and exploring movies</p>
+          <p className={styles.subtitle}>Keep in mind this is just a portfolio project with a lot of dummy data, the project is not for commercial use and none of the info bellow is real.</p>
         </div>
       </section>
 
