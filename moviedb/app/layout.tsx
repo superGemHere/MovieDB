@@ -14,7 +14,20 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "MovieDB Info - Find and Discover Movies",
   description: "Browse and discover movies, add to your watchlist and more",
-}
+  openGraph: {
+    title: "MovieDB Info",
+    siteName: "MovieDB Info",
+    type: "website",
+    url: "https://moviedb-info.vercel.app/",
+    images: [
+      {
+        url: "https://moviedb-info.vercel.app/_next/static/media/logo.3ec7b58d.webp",
+        alt: "MovieDB Info Logo",
+      },
+    ],
+    description: "Explore trending, top-rated, and upcoming movies.",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -23,16 +36,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <title>MovieDB Info</title>
-        <meta property="og:title" content="MovieDB Info" />
-        <meta property="og:site_name" content="MovieDB Info" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://moviedb-info.vercel.app/" />
-        <meta property="og:image" content="https://moviedb-info.vercel.app/_next/static/media/logo.3ec7b58d.webp" />
-        <meta property="og:image:alt" content="MovieDB Info Logo" />
-        <meta property="og:description" content="Explore trending, top-rated, and upcoming movies." />
-      </Head>
       <body className={inter.className}>
         <AuthProvider>
           <ToastProvider>
