@@ -25,6 +25,11 @@ export default function RootLayout({
     <html lang="en">
        <Head>
         <title>MovieDB Info</title>
+        <meta property="og:title" content="MovieDB Info" />
+        <meta property="og:site_name" content="MovieDB Info" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://moviedb-info.vercel.app" />
+        <meta property="og:description" content="Your ultimate movie database for discovering and exploring films from around the world." />
       </Head>
       <body className={inter.className}>
         <AuthProvider>
