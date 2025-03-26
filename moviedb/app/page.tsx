@@ -55,6 +55,7 @@ export default async function Home() {
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${BASE_URL}/`} />
+        <link rel="preload" href={logo.src} as="image"></link>
       </Head>
       <main className={styles.main}>
         <section
