@@ -16,6 +16,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
     metadataBase: new URL("https://moviedb-info.vercel.app"),
     openGraph: {
       title: "MovieDB Info",
+      siteName: "MovieDB Info",
       description: "Explore trending, top-rated, and upcoming movies.",
       images: [
         {
