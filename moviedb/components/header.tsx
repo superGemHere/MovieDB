@@ -36,11 +36,11 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <Link href="/search" className={styles.iconButton}>
-            <Search />
+          <Link href="/search" className={styles.iconButton} aria-label="Search Link Nav">
+            <Search aria-label="Search Button Nav"/>
           </Link>
-          <Link href="/profile" className={styles.iconButton}>
-            <User />
+          <Link href="/profile" className={styles.iconButton} aria-label="Profile Link Nav">
+            <User aria-label="Profile Button Nav"/>
           </Link>
           <button className={styles.menuButton} onClick={toggleMenu} aria-label="Toggle menu">
             {isMenuOpen ? <X /> : <Menu />}
