@@ -7,15 +7,20 @@ import "./globals.css"
 import { AuthProvider } from "@/context/authContext"
 import { ToastProvider } from "@/context/toastContext"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import Head from "next/head"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "MovieDB Info - Find and Discover Movies",
   description: "Browse and discover movies, add to your watchlist and more",
+  openGraph: {
+    title: "MovieDB Info",
+    siteName: "MovieDB Info",
+    type: "website",
+    url: "https://moviedb-info.vercel.app",
+    description: "Your ultimate movie database for discovering and exploring films from around the world.",
+  },
 }
-
 export default function RootLayout({
   children,
 }: {
@@ -23,14 +28,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-       <Head>
-        <title>MovieDB Info</title>
-        <meta property="og:title" content="MovieDB Info" />
-        <meta property="og:site_name" content="MovieDB Info" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://moviedb-info.vercel.app" />
-        <meta property="og:description" content="Your ultimate movie database for discovering and exploring films from around the world." />
-      </Head>
       <body className={inter.className}>
         <AuthProvider>
           <ToastProvider>
