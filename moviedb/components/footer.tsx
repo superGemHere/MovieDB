@@ -11,20 +11,20 @@ export default function Footer() {
             <h3>MovieDB</h3>
             <p>Your ultimate movie database for discovering and exploring films from around the world.</p>
             <div className={styles.social}>
-              <Link href="#" className={styles.socialIcon}>
-                <Facebook size={20} />
+              <Link href="#" className={styles.socialIcon} aria-label="Facebook Link">
+                <Facebook size={20} aria-label="Facebook Button"/>
               </Link>
-              <Link href="#" className={styles.socialIcon}>
-                <Twitter size={20} />
+              <Link href="#" className={styles.socialIcon} aria-label="Twitter Link">
+                <Twitter size={20} aria-label="Twitter Button"/>
               </Link>
-              <Link href="#" className={styles.socialIcon}>
-                <Instagram size={20} />
+              <Link href="#" className={styles.socialIcon} aria-label="Instagram Link">
+                <Instagram size={20} aria-label="Instagram Button"/>
               </Link>
-              <Link href="#" className={styles.socialIcon}>
-                <Youtube size={20} />
+              <Link href="#" className={styles.socialIcon} aria-label="Youtube Link">
+                <Youtube size={20} aria-label="Youtube Button"/>
               </Link>
-              <Link href="#" className={styles.socialIcon}>
-                <Github size={20} />
+              <Link href="https://github.com/superGemHere/MovieDB/tree/main/moviedb" className={styles.socialIcon}  aria-label="Github Link">
+                <Github size={20} aria-label="Github Button"/>
               </Link>
             </div>
             <div className={styles.attribution}>
