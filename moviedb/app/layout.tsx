@@ -12,7 +12,10 @@ import Head from "next/head"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "MovieDB Info - Find and Discover Movies",
+  title: {
+    default: "MovieDB Info - Find and Discover Movies",
+    template: "%s | MovieDB Info",
+  },
   description: "Browse and discover movies, add to your watchlist and more",
   openGraph: {
     title: "MovieDB Info",
