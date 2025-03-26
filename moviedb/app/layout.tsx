@@ -7,6 +7,7 @@ import "./globals.css"
 import { AuthProvider } from "@/context/authContext"
 import { ToastProvider } from "@/context/toastContext"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Head from "next/head"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,6 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+       <Head>
+        <title>MovieDB Info</title>
+      </Head>
       <body className={inter.className}>
         <AuthProvider>
           <ToastProvider>
