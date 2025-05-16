@@ -26,7 +26,7 @@ Live Demo - [MovieDB Info](https://moviedb-info.vercel.app/).
 - 🛒 **Watchlist**: Save your favorite movies and access them anytime.
 - 📱 **Responsive Design**: Optimized for all devices.
 - 🔐 **User Authentication**: Secure login and registration system trough TMDB OAuth API.
-- 🔎 **SEO Friendly**: Google SEO friendly, ranking 3-rd on search on Chrome.
+- 🔎 **SEO Friendly**: Google SEO friendly.
 
 ## Technologies Used
 
